@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 
@@ -7,7 +8,8 @@ using namespace std;
 
 //declare our functions
 string getUserInput();
-int completeWord(string wordToCheck);
+vector<string> loadTextFile();
+string completeWord(string wordToCheck);
 
 int main()
 {
@@ -22,7 +24,9 @@ int main()
     //Make sure we have a value we can use.
     if (!input.empty()){
         //If we have our value, lets do something.
-        cout << "We have a value!";
+        cout << "We have a value!\n";
+        vector<string> words = loadTextFile();
+
     } else {
         //Otherwise, let's just leave.
         throw invalid_argument("Word to autocomplete cannot be nothing.");
@@ -33,8 +37,37 @@ int main()
     // delete [] array;
 }
 
-int completeWord(string wordToCheck)
+string completeWord(string wordToCheck)
 {
+
+}
+
+vector<string> loadTextFile()
+{
+    //Using vector, we don't need to pre-define our arr length.
+    vector<string> wordArray;
+    string test;
+    string path = "enable1.txt";
+    ifstream wordFile(path);
+
+    if (wordFile.is_open())
+    {
+        cout << "Hello - we are here." << endl;
+        string line; 
+        while (wordFile >> line)
+        {
+            cout << line << endl;
+            wordArray.push_back(line);
+        }
+
+        cout << wordArray.size() << " Is the size of our vector..." << endl;
+        return wordArray;
+    }
+    else
+    {
+        throw out_of_range("File failed to open. Is it in the right place?");
+        return wordArray;
+    }
 
 }
 
