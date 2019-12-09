@@ -26,6 +26,18 @@ int main()
         //If we have our value, lets do something.
         cout << "We have a value!\n";
         vector<string> words = loadTextFile();
+        vector<string> foundWords;
+        int fileLength = words.size();
+
+        for( int a = 0; a < fileLength; a = a + 1 ) {
+            // cout << "value of a: " << a << endl;
+            string currentWord = words.at(a);
+            // cout << "Value of current word:" << currentWord << endl;
+            if (currentWord.find(input) != std::string::npos) {
+                std::cout << "found! " << currentWord << '\n';
+                foundWords.push_back(currentWord);
+            } 
+        }
 
     } else {
         //Otherwise, let's just leave.
